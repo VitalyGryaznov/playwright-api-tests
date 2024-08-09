@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { createProduct, getProductById } from "../api/productEndpoint";
+import { createProduct, deleteProductById, getProductById } from "../api/productEndpoint";
 import { getProduct, getRandomString, getValidProduct } from "../helpers/testDataHelpers";
 
 // check-list:
@@ -58,6 +58,6 @@ test("when I create a product with a name length 255 I can get it by id", async 
 });
 
 test("when I delete a product with invalid id I should get an error response", async ({ request }) => {
-  const productResponse = await getProductById(request, getRandomString(50, '!@#$%^&*()_+'));
+  const productResponse = await deleteProductById(request, getRandomString(50, '!@#$%^&*()_+'));
   expect(productResponse.ok()).toBeFalsy();
 });
